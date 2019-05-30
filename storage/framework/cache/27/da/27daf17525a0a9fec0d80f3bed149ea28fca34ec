@@ -1,4 +1,4 @@
-1559170254a:1:{s:13:"last_news.htm";a:7:{s:8:"fileName";s:13:"last_news.htm";s:7:"content";s:1563:"[viewBag]
+1559220528a:1:{s:13:"last_news.htm";a:7:{s:8:"fileName";s:13:"last_news.htm";s:7:"content";s:1563:"[viewBag]
 
 [blogPosts]
 pageNumber = "{{ :page }}"
