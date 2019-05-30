@@ -1,0 +1,12 @@
+list: $/ewoutduyck/map/models/category/columns.yaml
+modelClass: EwoutDuyck\Map\Models\Category
+title: Categories
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'ewoutduyck/map/categories/update/:id'

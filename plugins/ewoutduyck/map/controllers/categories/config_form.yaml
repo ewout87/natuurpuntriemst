@@ -1,0 +1,10 @@
+name: Categories
+form: $/ewoutduyck/map/models/category/fields.yaml
+modelClass: EwoutDuyck\Map\Models\Category
+defaultRedirect: ewoutduyck/map/categories
+create:
+    redirect: 'ewoutduyck/map/categories/update/:id'
+    redirectClose: ewoutduyck/map/categories
+update:
+    redirect: ewoutduyck/map/categories
+    redirectClose: ewoutduyck/map/categories

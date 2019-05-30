@@ -1,0 +1,4 @@
+title: Locations
+modelClass: EwoutDuyck\Map\Models\Location
+toolbar:
+    buttons: reorder_toolbar

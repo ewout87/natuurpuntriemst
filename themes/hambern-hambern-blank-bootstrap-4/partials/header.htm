@@ -1,0 +1,12 @@
+description = "The header"
+
+[viewBag]
+==
+<div class="jumbotron gradient header text-xs-center">
+		<div class="container">
+			{% placeholder jumbotron default %}
+			<h1 class="display-3">Welkom</h1>
+			<p class="lead">{% content 'lead' %}</p>
+			{% endplaceholder %}
+		</div>
+	</div>

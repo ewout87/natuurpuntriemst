@@ -1,0 +1,20 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table ewoutduyck_map_categories'
+    - builder_table_create_ewoutduyck_map_categories.php
+1.0.3:
+    - 'Created table ewoutduyck_map_locations'
+    - builder_table_create_ewoutduyck_map_locations.php
+1.0.4:
+    - 'Updated table ewoutduyck_map_locations'
+    - builder_table_update_ewoutduyck_map_locations.php
+1.0.5:
+    - 'Updated table ewoutduyck_map_locations'
+    - builder_table_update_ewoutduyck_map_locations_2.php
+1.0.6:
+    - 'Updated table ewoutduyck_map_locations'
+    - builder_table_update_ewoutduyck_map_locations_3.php
+1.0.7:
+    - 'Updated table ewoutduyck_map_categories'
+    - builder_table_update_ewoutduyck_map_categories.php

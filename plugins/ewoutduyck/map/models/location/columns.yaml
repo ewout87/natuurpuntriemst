@@ -1,0 +1,24 @@
+columns:
+    id:
+        label: id
+        type: number
+    name:
+        label: name
+        type: text
+    category_id:
+        label: category_id
+        type: number
+        select: name
+        relation: category
+    description:
+        label: description
+        type: text
+    lat:
+        label: lat
+        type: number
+    long:
+        label: long
+        type: number
+    species:
+        label: species
+        type: text
