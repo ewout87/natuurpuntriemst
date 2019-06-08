@@ -1,0 +1,6 @@
+plugin:
+    name: 'edk.banners::lang.plugin.name'
+    description: 'edk.banners::lang.plugin.description'
+    author: EDK
+    icon: oc-icon-image
+    homepage: ''

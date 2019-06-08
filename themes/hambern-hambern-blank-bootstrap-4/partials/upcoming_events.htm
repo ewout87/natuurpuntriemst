@@ -6,13 +6,17 @@ scope = "-"
 scopeValue = "{{ :scope }}"
 displayColumn = "name"
 noRecordsMessage = "No records found"
-detailsPage = "-"
+detailsPage = "event"
+detailsKeyColumn = "id"
 detailsUrlParameter = "id"
+recordsPerPage = 3
 pageNumber = "{{ :page }}"
+sortColumn = "start_at"
+sortDirection = "asc"
 ==
 <div class="container m-b-3">
     <div class="row m-b-1">
-        <div class="col-md-12 text-xs-center">
+        <div class="col-md-12">
             <h2>Komende activiteiten</h2>
         </div>
     </div>
@@ -25,16 +29,17 @@ pageNumber = "{{ :page }}"
           <div class="row">
             <div class="col-md-4">
                 <div class="calendar">
-                    <div>{{ record.start_at|date("l")|slice(0, 3) }}</div>
+                    <div>{{ record.start_at|date("l") }}</div>
                   <div>{{ record.start_at|date("d") }}</div>
                   <div>{{ record.start_at|date("M") }}</div>
+                  <a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}" class="read-more"></a>
                 </div>
             </div>
             <div class="col-md-8">
               <div class="">
                 <h5 class="card-title">{{ record.name }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{ record.address }}</h6>
-                <a href="#" class="card-link">Lees meer</a>
+                <a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}" class="card-link">Lees meer</a>
               </div>
             </div>
           </div>
@@ -44,6 +49,6 @@ pageNumber = "{{ :page }}"
     {% endfor %}
   </div>
       <div class="text-xs-center">
-        <a class="button m-x-auto" href="#">Alle activiteiten ></a>
+        <a class="button m-x-auto" href="{{'events'|page}}">Alle activiteiten ></a>
     </div>
 </div>

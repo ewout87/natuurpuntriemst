@@ -1,5 +1,82 @@
-title = "projects"
+title = "Projecten"
 url = "/projects"
 layout = "default"
+description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut leo interdum, dignissim justo ac, dapibus sem. Suspendisse potenti."
 is_hidden = 0
+child_of = "home"
+hide_crumb = 0
+remove_crumb_trail = 0
+crumb_disabled = 0
+
+[viewBag]
+
+[builderList]
+modelClass = "Edk\Projects\Models\Project"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "name"
+noRecordsMessage = "Geen records gevonden"
+detailsPage = "project"
+detailsKeyColumn = "id"
+detailsUrlParameter = "id"
+recordsPerPage = 9
+pageNumber = "{{ :page }}"
 ==
+<div class="projects container m-b-3">
+    <div class="row">
+    {% for record in records %}
+        <div class="col-md-4">
+            {% if record.featured_images.count %}
+                    <div class="featured-images text-center">
+                    {% for image in record.featured_images|slice(0,1) %}
+                    <p>
+                        <img class="position-relative w-100"
+                            data-src="{{ image.filename}}"
+                            src="{{ image.path|resize(500)}}"
+                            alt="{{ image.description }}"
+                            />
+                    </p>
+                    {% endfor %}
+                    </div>  
+                {% endif %}
+                <div class="teaser-text arrow-up wow bounceInUp">
+            
+                    <h3>{{ record.name }}</h3>
+                    
+                    <p>{{ record.description|raw|truncate(100, true) }}</p>
+                
+                
+                    {% if detailsPage %}
+                        <a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}">
+                    {% endif %}
+
+                Lees meer
+
+                {% if detailsPage %}
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    {% else %}
+        <p class="no-data">{{ noRecordsMessage }}</p>
+    {% endfor %}
+    
+</div>
+
+{% if records.lastPage > 1 %}
+    <ul class="pagination">
+        {% if records.currentPage > 1 %}
+            <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage-1) }) }}">&larr; Prev</a></li>
+        {% endif %}
+
+        {% for page in 1..records.lastPage %}
+            <li class="{{ records.currentPage == page ? 'active' : null }}">
+                <a href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }}</a>
+            </li>
+        {% endfor %}
+
+        {% if records.lastPage > records.currentPage %}
+            <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage+1) }) }}">Next &rarr;</a></li>
+        {% endif %}
+    </ul>
+{% endif %}

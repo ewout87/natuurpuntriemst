@@ -5,8 +5,8 @@ pageNumber = "{{ :page }}"
 postsPerPage = 1
 noPostsMessage = "No posts found"
 sortOrder = "published_at desc"
-categoryPage = "about"
-postPage = "about"
+categoryPage = "article"
+postPage = "article"
 ==
 <div class="last-news container m-b-3">
     {% for post in posts %}
@@ -14,29 +14,29 @@ postPage = "about"
     <div class="col-md-8">
         {% if post.featured_images.count %}
             <div class="featured-images text-center">
-            {% for image in post.featured_images %}
+            {% for image in post.featured_images|slice(0,1) %}
             <p>
-                <img class="position-relative"
+                <img class="position-relative w-100"
                     data-src="{{ image.filename}}"
                     src="{{ image.path|resize(500)}}"
                     alt="{{ image.description }}"
                     />
+                <a class="read-more" href="{{ post.url }}"></a>
             </p>
             {% endfor %}
             </div>
         {% endif %}
     </div>
     <div class="col-md-4">
-        <div class="teaser-text arrow-left">
-            <h3>{{ post.title }}</h3>
+        <div class="teaser-text arrow-left wow bounceInRight">
             <p class="info">
-                Gepubliceerd op {{ post.published_at|date('M d, Y') }}
-                
+                {{ post.published_at|date('d F Y')|capitalize }}
             </p>
+            <h3>{{ post.title }}</h3>
+            
             <p class="excerpt">{{ post.summary|raw }}</p>
-            {% for category in post.categories %}
-                    <span class="categories">{{ category.name }}</span>{% if not loop.last %}, {% endif %}
-                {% endfor %}
+            
+            
             <div>
                 <a href="{{ post.url }}">Lees meer</a>
             </div>
@@ -44,7 +44,7 @@ postPage = "about"
     </div>
   </div>
   <div class="text-xs-center">
-      <a class="button m-x-auto" href="#">Alle artikels ></a>
+      <a class="button m-x-auto" href="{{ 'news'|page }}">Alle artikels ></a>
   </div>
   {% endfor %}
 </div>

@@ -2,11 +2,12 @@ description = "The header"
 
 [viewBag]
 ==
-<div class="jumbotron gradient header text-xs-center">
-		<div class="container">
+<div class="jumbotron gradient header" style="background: url('{{ this.page.banner_image| default('toerisme-bezienswaardigheden_web.jpg' | media )}}') center center no-repeat; background-size: cover">
+		<div class="container text-xs-center">
 			{% placeholder jumbotron default %}
-			<h1 class="display-3">Welkom</h1>
-			<p class="lead">{% content 'lead' %}</p>
+			<h1 id="page-title" class="display-3">{{ this.page.title|capitalize }}</h1>
+			<p class="lead">{{ this.page.description }}</p>
+			
 			{% endplaceholder %}
 		</div>
 	</div>

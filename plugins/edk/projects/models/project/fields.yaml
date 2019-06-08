@@ -1,0 +1,20 @@
+fields:
+    name:
+        label: Naam
+        span: auto
+        required: 1
+        type: text
+    description:
+        label: Omschrijving
+        size: giant
+        span: left
+        type: richeditor
+    featured_images:
+        label: 'Bestand uploader'
+        mode: file
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload

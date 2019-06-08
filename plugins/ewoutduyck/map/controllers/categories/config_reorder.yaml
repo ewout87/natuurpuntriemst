@@ -1,4 +1,0 @@
-title: Categories
-modelClass: EwoutDuyck\Map\Models\Category
-toolbar:
-    buttons: reorder_toolbar

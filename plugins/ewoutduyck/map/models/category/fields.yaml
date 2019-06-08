@@ -1,5 +1,0 @@
-fields:
-    name:
-        label: 'ewoutduyck.map::lang.plugin.name'
-        span: auto
-        type: text

@@ -1,0 +1,6 @@
+plugin:
+    name: events
+    description: 'edk.events::lang.plugin.description'
+    author: EDK
+    icon: oc-icon-calendar
+    homepage: ''

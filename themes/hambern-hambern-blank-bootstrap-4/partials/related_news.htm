@@ -1,0 +1,49 @@
+[viewBag]
+
+[blogPosts]
+pageNumber = "{{ :page }}"
+postsPerPage = 3
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+categoryPage = "article"
+postPage = "article"
+exceptPost = "{{ :slug }}"
+==
+<div class="related-news arrow-up container m-b-3">
+        <h2 class="m-b-3">Andere artikels</h2>
+
+        <div class="row">
+        {% for post in posts %}
+            
+            <div class="col-md-4">
+                {% if post.featured_images.count %}
+                    <div class="featured-images text-center">
+                    {% for image in post.featured_images|slice(0,1) %}
+                    <p>
+                        <img class="position-relative w-100"
+                            data-src="{{ image.filename}}"
+                            src="{{ image.path|resize(500)}}"
+                            alt="{{ image.description }}"
+                            />
+                    </p>
+                    {% endfor %}
+                    </div>  
+                {% endif %}
+                
+                <div class="teaser-text arrow-up wow bounceInUp">
+                    <p class="info">
+                        {{ post.published_at|date('d F Y') }}
+                    </p>
+                    <h3>{{ post.title }}</h3>
+                    <p class="excerpt">{{ post.summary|raw }}</p>
+                    <div>
+                        <a href="{{ post.url }}">Lees meer</a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <li class="no-data">{{ __SELF__.noPostsMessage }}</li>
+        {% endfor %}
+    </div>
+
+</div>

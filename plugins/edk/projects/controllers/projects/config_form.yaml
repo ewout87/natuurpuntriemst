@@ -1,0 +1,10 @@
+name: Projects
+form: $/edk/projects/models/project/fields.yaml
+modelClass: Edk\Projects\Models\Project
+defaultRedirect: edk/projects/projects
+create:
+    redirect: 'edk/projects/projects/update/:id'
+    redirectClose: edk/projects/projects
+update:
+    redirect: edk/projects/projects
+    redirectClose: edk/projects/projects

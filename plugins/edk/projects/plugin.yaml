@@ -1,0 +1,11 @@
+plugin:
+    name: 'edk.projects::lang.plugin.name'
+    description: 'edk.projects::lang.plugin.description'
+    author: EDK
+    icon: oc-icon-leaf
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: 'edk.projects::lang.plugin.name'
+        url: edk/projects/projects
+        icon: icon-leaf

@@ -1,0 +1,8 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table edk_events_event'
+    - builder_table_create_edk_events_event.php
+1.0.3:
+    - 'Drop table edk_events_event'
+    - builder_table_delete_edk_events_event.php
