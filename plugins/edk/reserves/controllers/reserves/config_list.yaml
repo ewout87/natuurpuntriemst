@@ -1,0 +1,12 @@
+list: $/edk/reserves/models/reserve/columns.yaml
+modelClass: Edk\Reserves\Models\Reserve
+title: Reserves
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'edk/reserves/reserves/update/:id'

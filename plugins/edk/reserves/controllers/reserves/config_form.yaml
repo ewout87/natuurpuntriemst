@@ -1,0 +1,10 @@
+name: Reserves
+form: $/edk/reserves/models/reserve/fields.yaml
+modelClass: Edk\Reserves\Models\Reserve
+defaultRedirect: edk/reserves/reserves
+create:
+    redirect: 'edk/reserves/reserves/update/:id'
+    redirectClose: edk/reserves/reserves
+update:
+    redirect: edk/reserves/reserves
+    redirectClose: edk/reserves/reserves

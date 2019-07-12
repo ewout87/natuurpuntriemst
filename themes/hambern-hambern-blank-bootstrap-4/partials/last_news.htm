@@ -9,8 +9,9 @@ categoryPage = "article"
 postPage = "article"
 ==
 <div class="last-news container m-b-3">
+    <h2 class="text-md-center m-b-2">Laatste nieuws</h2>
     {% for post in posts %}
-  <div class="row">
+  <div class="row v-align">
     <div class="col-md-8">
         {% if post.featured_images.count %}
             <div class="featured-images text-center">
@@ -34,7 +35,7 @@ postPage = "article"
             </p>
             <h3>{{ post.title }}</h3>
             
-            <p class="excerpt">{{ post.summary|raw }}</p>
+            <p class="excerpt">{{ post.content_html|raw|truncate(100, true) }}</p>
             
             
             <div>

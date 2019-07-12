@@ -1,5 +1,5 @@
 title = "Projecten"
-url = "/projects"
+url = "/projects/:page?"
 layout = "default"
 description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut leo interdum, dignissim justo ac, dapibus sem. Suspendisse potenti."
 is_hidden = 0
@@ -19,7 +19,7 @@ noRecordsMessage = "Geen records gevonden"
 detailsPage = "project"
 detailsKeyColumn = "id"
 detailsUrlParameter = "id"
-recordsPerPage = 9
+recordsPerPage = 3
 pageNumber = "{{ :page }}"
 ==
 <div class="projects container m-b-3">
@@ -39,9 +39,9 @@ pageNumber = "{{ :page }}"
                     {% endfor %}
                     </div>  
                 {% endif %}
-                <div class="teaser-text arrow-up wow bounceInUp">
+                <div class="teaser-text arrow-up">
             
-                    <h3>{{ record.name }}</h3>
+                    <h3 class="teaser-title">{{ record.name }}</h3>
                     
                     <p>{{ record.description|raw|truncate(100, true) }}</p>
                 
@@ -60,23 +60,26 @@ pageNumber = "{{ :page }}"
     {% else %}
         <p class="no-data">{{ noRecordsMessage }}</p>
     {% endfor %}
+    </div>
+    
+    {% if records.lastPage > 1 %}
+    <nav class="text-xs-center">
+        <ul class="pagination">
+            {% if records.currentPage > 1 %}
+                <li class="page-item"><a class="page-link" href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage-1) }) }}"><</a></li>
+            {% endif %}
+    
+            {% for page in 1..records.lastPage %}
+                <li class="page-item {{ records.currentPage == page ? 'active' : null }}">
+                    <a class="page-link" href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }}</a>
+                </li>
+            {% endfor %}
+    
+            {% if records.lastPage > records.currentPage %}
+                <li class="page-item"><a class="page-link" href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage+1) }) }}">></a></li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}
     
 </div>
-
-{% if records.lastPage > 1 %}
-    <ul class="pagination">
-        {% if records.currentPage > 1 %}
-            <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage-1) }) }}">&larr; Prev</a></li>
-        {% endif %}
-
-        {% for page in 1..records.lastPage %}
-            <li class="{{ records.currentPage == page ? 'active' : null }}">
-                <a href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }}</a>
-            </li>
-        {% endfor %}
-
-        {% if records.lastPage > records.currentPage %}
-            <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage+1) }) }}">Next &rarr;</a></li>
-        {% endif %}
-    </ul>
-{% endif %}

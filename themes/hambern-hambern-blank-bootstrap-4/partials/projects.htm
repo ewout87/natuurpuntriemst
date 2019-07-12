@@ -14,7 +14,8 @@ detailsUrlParameter = "id"
 pageNumber = "{{ :page }}"
 ==
 <div class="projects container m-b-3">
-    <div class="row">
+    <h2 class="text-md-center m-b-2">Onze projecten</h2>
+    <div class="row v-align">
         <div class="col-md-4">
             <div class="teaser-text arrow-right wow bounceInLeft">
                 <div class="slider-for">
@@ -60,14 +61,14 @@ pageNumber = "{{ :page }}"
 {% put scripts %}
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
-         $('.slider-for').slick({
+         $('.projects .slider-for').slick({
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: false,
           fade: true,
           asNavFor: '.slider-nav'
         });
-        $('.slider-nav').slick({
+        $('.projects .slider-nav').slick({
           slidesToShow: 1,
           slidesToScroll: 1,
           asNavFor: '.slider-for',

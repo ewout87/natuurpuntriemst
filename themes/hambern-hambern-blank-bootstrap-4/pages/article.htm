@@ -1,4 +1,4 @@
-title = "artikel"
+title = "article"
 url = "/article/:slug"
 layout = "default"
 is_hidden = 0
@@ -16,47 +16,54 @@ categoryPage = "article"
 ==
 <?php
 function onEnd() {
-
+    
     // get the post component
     $_post = $this->components['blogPost'];
     $_post = $_post->post; // post is the alias of my component
 
     // get the title
     $_title = $_post->title;
-    $_published_at = $_post->published_at->format('d F Y');
-    $_featured_image = $_post->featured_images[0]['path'];
-
+    
     // update the page title
-    $this->page->banner_image = $_featured_image;
     $this->page->title = $_title;
-    $this->page->description = $_published_at;
+    
+    /*
+    // get the published date
+    if(!empty($_post->published_at) && isset($_post->published_at)) {
+        $_published_at = $_post->published_at->format('d F Y');
+        
+        // update the page banner image
+        $this->page->description = $_published_at;
+    }
+    */
+    
+    // get featured image
+    if(isset($_post->featured_images[0]) && !empty($_post->featured_images[0])) {
+      $_featured_image = $_post->featured_images[0]['path'];  
+      
+      // update featured image
+      $this->page->banner_image = $_featured_image;
+    }
+    
+    
 }
 ?>
 ==
 <div class="container m-b-3">
-    <div class="row">
-        <div class="col-md-6">
+
+            <p class="info">{{ post.published_at|date('d F Y')|capitalize}}</p>
+            <h2>{{ post.title }}</h2>
             <div class="content">{{ post.content_html|raw }}</div>
-        </div>
-        <div class="col-md-6">
-               {% if post.gallery.count != 0 %}
-                {% for gallery in post.gallery %}
-                    <div class="container">
-                					<div class="gallery row no-pad">
-                						{% for image in gallery.images %}
-                						    <a class="item col-md-6" href="{{ image.path }}" data-toggle="lightbox" data-gallery="example-gallery">
-                							    <img class="img-fluid" title="{{image.title}}" src="{{ image.path }}" alt="">
-                							</a>
-                						{% endfor %}
-                					</div>
-                				</div>
-                		</div>
-                	</div>
+
+               {% if post.featured_images.count != 0 %}
+                {% for image in post.featured_images %}
+                	<a class="item col" href="{{ image.path }}" data-toggle="lightbox" data-gallery="example-gallery">
+                		<img class="img-fluid" title="{{image.title}}" src="{{ image.path }}" alt="">
+                	</a>				
                 {% endfor %}
             {% endif %}     
-            </div>
-        </div>
-    </div>
+
+
 </div>
 
 {% partial 'contact' %}

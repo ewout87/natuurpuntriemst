@@ -1,0 +1,11 @@
+plugin:
+    name: 'edk.reserves::lang.plugin.name'
+    description: 'edk.reserves::lang.plugin.description'
+    author: EDK
+    icon: oc-icon-tree
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: 'edk.reserves::lang.plugin.name'
+        url: edk/reserves/reserves
+        icon: icon-tree

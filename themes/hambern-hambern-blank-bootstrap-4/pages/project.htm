@@ -19,40 +19,29 @@ notFoundMessage = "Record niet gevonden"
 ==
 <?php
 function onEnd() {
-
+    
     // get the post component
     $_record = $this->components['builderDetails'];
     $_record = $_record->record; // post is the alias of my component
 
     // get the title
     $_title = $_record->name;
-    $_featured_image = $_record->featured_images[0]['path'];
 
     // update the page title
     $this->page->title = $_title;
-    $this->page->banner_image = $_featured_image;
+    
+    // get featured image
+    if(!empty($_record->featured_images[0]) && isset($_record->featured_images[0])){
+        $_featured_image = $_record->featured_images[0]['path'];
+        $this->page->banner_image = $_featured_image;
+    }
+    
 }
 ?>
 ==
 <div class="container m-b-3">
-    <div class="row">
-        <div class="col-md-6">
+
+            <h2>{{ record.name }}</h2>
             <div class="content">{{ record.description|raw }}</div>
-        </div>
-        <div class="col-md-6">
-            {% if record.featured_images.count %}
-                <div class="featured-images text-center">
-                    {% for image in record.featured_images %}
-                        <p>
-                            <img
-                                data-src="{{ image.filename }}"
-                                src="{{ image.path }}"
-                                alt="{{ image.description }}"
-                                style="max-width: 100%" />
-                        </p>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
-    </div>
+
 </div>

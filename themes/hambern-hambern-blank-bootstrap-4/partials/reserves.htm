@@ -1,0 +1,64 @@
+[viewBag]
+
+[builderList]
+modelClass = "Edk\Reserves\Models\Reserve"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "name"
+noRecordsMessage = "Geen records gevonden"
+detailsPage = "reserve"
+detailsKeyColumn = "id"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+==
+<div class="reserves container m-b-3">
+    <h2 class="text-md-center m-b-2">Onze gebieden</h2>
+            <div class="text-md-center slider-nav m-b-2">
+            {% for record in records %}
+                <div>
+                    <a>{{ record.name }}</a>
+                </div>
+            {% endfor %}
+            </div>
+
+            <div class="slider-for">
+              {% for record in records %}
+                <div id="{{ record.id }}" class="carousel-item {% if loop.first %}active{% endif %}">
+                    {% for image in record.featured_images|slice(0,1) %}
+                      <img class="position-relative w-100 h-50"
+                        data-src="{{ image.filename}}"
+                        src="{{ image.path|resize(500)}}"
+                        alt="{{ image.description }}"
+                        />
+                    {% endfor %}
+                </div>
+              {% endfor %}
+            </div>
+            
+
+</div>
+
+{% put styles %}
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"/>
+{% endput %}
+
+{% put scripts %}
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+         $('.reserves .slider-for').slick({
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+          fade: true,
+          asNavFor: '.slider-nav'
+        });
+        $('.reserves .slider-nav').slick({
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          asNavFor: '.slider-for',
+          centerMode: true,
+          focusOnSelect: true
+        });
+    </script>
+{% endput %}

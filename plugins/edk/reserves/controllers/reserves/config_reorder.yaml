@@ -1,0 +1,4 @@
+title: Reserves
+modelClass: Edk\Reserves\Models\Reserve
+toolbar:
+    buttons: reorder_toolbar

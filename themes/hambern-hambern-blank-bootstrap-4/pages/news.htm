@@ -1,5 +1,5 @@
 title = "Nieuws"
-url = "/news"
+url = "/news/:page?"
 layout = "default"
 description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut leo interdum, dignissim justo ac, dapibus sem. Suspendisse potenti."
 is_hidden = 0
@@ -12,17 +12,16 @@ crumb_disabled = 0
 
 [blogPosts]
 pageNumber = "{{ :page }}"
-postsPerPage = 9
+postsPerPage = 3
 noPostsMessage = "No posts found"
 sortOrder = "published_at desc"
 categoryPage = "article"
 postPage = "article"
 ==
 <div class="last-news container m-b-3">
-    <div class="row">
         {% for post in posts %}
-            
-            <div class="col-md-4">
+        <div class="row v-align">
+            <div class="col-md-4 {% if loop.index is even %} push-md-8 {% endif %} vcenter">
                 {% if post.featured_images.count %}
                     <div class="featured-images text-center">
                     {% for image in post.featured_images|slice(0,1) %}
@@ -36,8 +35,9 @@ postPage = "article"
                     {% endfor %}
                     </div>  
                 {% endif %}
-                
-                <div class="teaser-text arrow-up wow bounceInUp">
+             </div>
+             <div class="col-md-8 {% if loop.index is even %} pull-md-4 {% endif %} vcenter">
+                <div class="teaser-text {% if loop.index is odd %} arrow-left {% else %} arrow-right {% endif %}">
                     <p class="info">
                         {{ post.published_at|date('d F Y') }}
                     </p>
@@ -48,26 +48,29 @@ postPage = "article"
                     </div>
                 </div>
             </div>
+          </div>  
+          
         {% else %}
             <li class="no-data">{{ __SELF__.noPostsMessage }}</li>
         {% endfor %}
-    </div>
+        
+        {% if posts.lastPage > 1 %}
+        <nav class="text-xs-center">
+            <ul class="pagination">
+                {% if posts.currentPage > 1 %}
+                    <li class="page-item"><a class="page-link" href="{{ this.page.baseFileName|page({ (pageParam): (posts.currentPage-1) }) }}"><</a></li>
+                {% endif %}
+        
+                {% for page in 1..posts.lastPage %}
+                    <li class="page-item {{ posts.currentPage == page ? 'active' : null }}">
+                        <a class="page-link" href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }}</a>
+                    </li>
+                {% endfor %}
+        
+                {% if posts.lastPage > posts.currentPage %}
+                    <li class="page-item"><a class="page-link" href="{{ this.page.baseFileName|page({ (pageParam): (posts.currentPage+1) }) }}">></a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
 </div>
-
-{% if posts.lastPage > 1 %}
-    <ul class="pagination">
-        {% if posts.currentPage > 1 %}
-            <li><a href="{{ this.page.baseFileName|page({ (__SELF__.pageParam): (posts.currentPage-1) }) }}">&larr; Prev</a></li>
-        {% endif %}
-
-        {% for page in 1..posts.lastPage %}
-            <li class="{{ posts.currentPage == page ? 'active' : null }}">
-                <a href="{{ this.page.baseFileName|page({ (__SELF__.pageParam): page }) }}">{{ page }}</a>
-            </li>
-        {% endfor %}
-
-        {% if posts.lastPage > posts.currentPage %}
-            <li><a href="{{ this.page.baseFileName|page({ (__SELF__.pageParam): (posts.currentPage+1) }) }}">Next &rarr;</a></li>
-        {% endif %}
-    </ul>
-{% endif %}

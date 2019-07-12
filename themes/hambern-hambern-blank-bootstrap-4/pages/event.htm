@@ -19,32 +19,40 @@ notFoundMessage = "Record niet gevonden"
 ==
 <?php
 function onEnd() {
-
+    
     // get the post component
     $_record = $this->components['builderDetails'];
     $_record = $_record->record; // post is the alias of my component
 
     // get the title
     $_title = $_record->name;
-    $_start_at = $_record->start_at;
-    $_ends_at = $_record->ends_at;
 
     // update the page title
     $this->page->title = $_title;
-    $this->page->description = $_start_at->format('l d F').' van '.$_start_at->format('H:i').' tot '.$_ends_at->format('H:i');
 }
 ?>
 ==
-<div class="event-item">
-    <!--<p class="date-label">-->
-        <!--<span class="month">{{event.start_at | date('M') }}</span>-->
-        <!--<span class="date-number">{{event.start_at | date('d') }}</span>-->
-    <!--</p>-->
-    <div class="details">
-        <h2 class="title">{{event.name}}</h2>
-        <p class="time"><i class="fa fa-clock-o"></i> {{event.start_at | date('M')}}</p>
-        {% if event.address is not empty %}
-        <p class="location"><i class="fa fa-map-marker"></i> {{event.address}}</p>
-        {% endif %}
-    </div><!--//details-->
-</div><!--event-item-->
+<div class="container m-b-3">
+    <div class="event-item">
+        <!--<p class="date-label">-->
+            <!--<span class="month">{{record.start_at | date('M') }}</span>-->
+            <!--<span class="date-number">{{record.start_at | date('d') }}</span>-->
+        <!--</p>-->
+        <div class="details">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="teaser-text arrow-down">
+                        <h2 class="title">{{record.name}}</h2>
+                        <p class="time"><i class="fa fa-calendar"></i> {{record.start_at | date('l d M H:i')}}</p>
+                        {% if record.address is not empty %}
+                        <p class="location"><i class="fa fa-map-marker"></i> {{record.address}}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <p>{{ record.detail | raw }}</p>
+                </div>
+            </div>
+        </div><!--//details-->
+    </div><!--event-item-->
+</div>

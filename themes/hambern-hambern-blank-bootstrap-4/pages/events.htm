@@ -8,6 +8,8 @@ hide_crumb = 0
 remove_crumb_trail = 0
 crumb_disabled = 0
 
+[viewBag]
+
 [builderList]
 modelClass = "JorgeAndrade\Events\Models\Event"
 scope = "scopeAfterToday"
@@ -17,44 +19,6 @@ noRecordsMessage = "Geen records gevonden"
 detailsPage = "event"
 detailsKeyColumn = "id"
 detailsUrlParameter = "id"
-recordsPerPage = 3
 pageNumber = "{{ :page }}"
-
-[viewBag]
 ==
-<div class="container m-b-3">
-    <div class="row m-b-1">
-        <div class="col-md-12">
-            <h2>Komende activiteiten</h2>
-        </div>
-    </div>
-  <div class="row m-b-1">
-  
-  {% for record in records %}
-  
-    <div class="col-md-4">
-
-          <div class="row">
-            <div class="col-md-4">
-                <div class="calendar">
-                    <div>{{ record.start_at|date("l") }}</div>
-                  <div>{{ record.start_at|date("d") }}</div>
-                  <div>{{ record.start_at|date("M") }}</div>
-                </div>
-            </div>
-            <div class="col-md-8">
-              <div class="">
-                <h5 class="card-title">{{ record.name }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{ record.address }}</h6>
-                <a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}" class="card-link">Lees meer</a>
-              </div>
-            </div>
-          </div>
-
-    </div>
-    
-    {% endfor %}
-  </div>
-</div>
-
-{% partial 'past_events' %}
+{% partial 'upcoming_events' %}

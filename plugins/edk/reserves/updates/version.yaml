@@ -1,0 +1,8 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table edk_reserves_reserve'
+    - builder_table_create_edk_reserves_reserve.php
+1.0.3:
+    - 'Updated table edk_reserves_reserve'
+    - builder_table_update_edk_reserves_reserve.php

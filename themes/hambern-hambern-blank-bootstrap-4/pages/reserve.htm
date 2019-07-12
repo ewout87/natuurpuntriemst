@@ -1,0 +1,48 @@
+title = "gebied"
+url = "/reserve/:id"
+layout = "default"
+is_hidden = 0
+child_of = "reserves"
+hide_crumb = 0
+remove_crumb_trail = 0
+crumbElementTitle = "page-title"
+crumb_disabled = 0
+
+[viewBag]
+
+[builderDetails]
+modelClass = "Edk\Reserves\Models\Reserve"
+identifierValue = "{{ :id }}"
+modelKeyColumn = "id"
+displayColumn = "name"
+notFoundMessage = "Record niet gevonden"
+==
+<?php
+function onEnd() {
+    
+    // get the post component
+    $_record = $this->components['builderDetails'];
+    $_record = $_record->record; // post is the alias of my component
+
+    // get the title
+    $_title = $_record->name;
+
+    // update the page title
+    $this->page->title = $_title;
+    
+    // get featured image
+    if(!empty($_record->featured_images[0]) && isset($_record->featured_images[0])){
+        $_featured_image = $_record->featured_images[0]['path'];
+        $this->page->banner_image = $_featured_image;
+    }
+    
+}
+?>
+==
+<div class="container m-b-3">
+
+            <h2>{{ record.name }}</h2>
+            <div class="content">{{ record.description|raw }}</div>
+
+
+</div>
