@@ -16,6 +16,13 @@ identifierValue = "{{ :id }}"
 modelKeyColumn = "id"
 displayColumn = "name"
 notFoundMessage = "Record niet gevonden"
+
+[LeafletMap]
+coords = "51.505, -0.09"
+zoom = 12
+markerCoords = "{{ 51.505, -0.09 }}"
+markerText = "redmarlin.leafletmap::lang.components.leafletmap.markerText.default"
+scrollProtection = "false"
 ==
 <?php
 function onEnd() {
@@ -31,18 +38,58 @@ function onEnd() {
     $this->page->title = $_title;
     
     // get featured image
-    if(!empty($_record->featured_images[0]) && isset($_record->featured_images[0])){
-        $_featured_image = $_record->featured_images[0]['path'];
+    if(!empty($_record->featured_image) && isset($_record->featured_image)){
+        $_featured_image = $_record->featured_image->path;
         $this->page->banner_image = $_featured_image;
     }
     
 }
 ?>
 ==
-<div class="container m-b-3">
+<div class="container-60 m-b-3"> 
 
-            <h2>{{ record.name }}</h2>
-            <div class="content">{{ record.description|raw }}</div>
-
-
+        <div class="intro">
+            <strong>{{ record.intro }}</strong>
+        </div>
+                {% partial 'contact' %}
+        <div class="description">
+            {{ record.description|raw }}  
+            
+        </div> 
 </div>
+
+<div class="species p-y-2 text-xs-center">
+    <h2 class="m-b-3"><i class="fas fa-binoculars"></i> Kensoorten</h2>
+    <div class="multiple-items">
+            {% if record.species.count != 0 %}
+                {% for species in record.species %}
+                	<div class="teaser-image text-md-center">
+                	   <div class="img-rounded bg" title="{{species.title}}" style="background-image: url('{{ species.path | resize(200)}}')" alt=""></div>
+                	   <br>
+                	    <i class="caption">{{ species.title }}</i>
+                	</div>				
+                {% endfor %}
+            {% endif %}     
+    </div>
+</div>
+
+<div id="leafmap"></div>
+{% component 'LeafletMap' %}
+
+
+{% put styles %}
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"/>
+{% endput %}
+
+{% put scripts %}
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+         $('.multiple-items').slick({
+          infinite: true,
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          arrows: true,
+        });
+    </script>
+{% endput %}

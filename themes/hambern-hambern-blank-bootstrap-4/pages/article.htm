@@ -13,6 +13,16 @@ crumb_disabled = 0
 [blogPost]
 slug = "{{ :slug }}"
 categoryPage = "article"
+
+[genericForm newsletter]
+messages_success = "Your form was successfully submitted"
+messages_errors = "There were errors with your submission"
+inline_errors = "disabled"
+sanitize_data = "disabled"
+anonymize_ip = "disabled"
+recaptcha_theme = "light"
+recaptcha_type = "image"
+recaptcha_size = "normal"
 ==
 <?php
 function onEnd() {
@@ -49,26 +59,35 @@ function onEnd() {
 }
 ?>
 ==
-<div class="container m-b-3">
+<div class="container-60 m-b-3">
 
             <p class="info">{{ post.published_at|date('d F Y')|capitalize}}</p>
             <h2>{{ post.title }}</h2>
-            <div class="content">{{ post.content_html|raw }}</div>
-
+            <div class="content m-b-3">{{ post.content_html|raw }}</div>
+                
                {% if post.featured_images.count != 0 %}
+               <div class="row">
                 {% for image in post.featured_images %}
-                	<a class="item col" href="{{ image.path }}" data-toggle="lightbox" data-gallery="example-gallery">
-                		<img class="img-fluid" title="{{image.title}}" src="{{ image.path }}" alt="">
-                	</a>				
-                {% endfor %}
-            {% endif %}     
+                	{% if loop.index is divisible by(4) or loop.first %}
+                	<a class="item col-lg-6 col-md-8" href="{{ image.path }}" data-toggle="lightbox" data-gallery="example-gallery">
+                	    <div class="lightbox-image">
+                		    <div class="bg" style="background-image: url('{{ image.path|resize(500,500)}}');"></div>
+                		</div>
+                	</a> 
+                	{% else %}
+                	<a class="item col-lg-3 col-md-4" href="{{ image.path }}" data-toggle="lightbox" data-gallery="example-gallery">
+                	    <div class="lightbox-image">
+                		    <div class="bg" style="background-image: url('{{ image.path|resize(500,500)}}');"></div>
+                		</div>
+                	</a> 
+                	{% endif %}
 
+                {% endfor %}
+                </div>
+            {% endif %}     
 
 </div>
 
-{% partial 'contact' %}
-
-{% partial 'related_news' %}
 
 {% put styles %}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
@@ -76,7 +95,8 @@ function onEnd() {
 
 {% put scripts %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
-    <script>$(document).on('click', '[data-toggle="lightbox"]', function(event) {
+    <script>
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
                 event.preventDefault();
                 $(this).ekkoLightbox();
             });

@@ -1,0 +1,4 @@
+title: Species
+modelClass: Edk\Reserves\Models\Species
+toolbar:
+    buttons: reorder_toolbar

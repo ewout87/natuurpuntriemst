@@ -6,3 +6,36 @@
 1.0.3:
     - 'Updated table edk_reserves_reserve'
     - builder_table_update_edk_reserves_reserve.php
+1.0.4:
+    - 'Created table edk_reserves_species'
+    - builder_table_create_edk_reserves_species.php
+1.0.5:
+    - 'Updated table edk_reserves_species'
+    - builder_table_update_edk_reserves_species.php
+1.0.6:
+    - 'Created table edk_reserves_reserve_species'
+    - builder_table_create_edk_reserves_reserve_species.php
+1.0.7:
+    - 'Updated table edk_reserves_reserve_species'
+    - builder_table_update_edk_reserves_reserve_species.php
+1.0.8:
+    - 'Updated table edk_reserves_reserve_species'
+    - builder_table_update_edk_reserves_reserve_species_2.php
+1.0.9:
+    - 'Updated table edk_reserves_reserve_species'
+    - builder_table_update_edk_reserves_reserve_species_3.php
+1.0.10:
+    - 'Updated table edk_reserves_reserve_species'
+    - builder_table_update_edk_reserves_reserve_species_4.php
+1.0.11:
+    - 'Updated table edk_reserves_reserve'
+    - builder_table_update_edk_reserves_reserve_2.php
+1.0.12:
+    - 'Drop table edk_reserves_reserve_species'
+    - builder_table_delete_edk_reserves_reserve_species.php
+1.0.13:
+    - 'Drop table edk_reserves_species'
+    - builder_table_delete_edk_reserves_species.php
+1.0.14:
+    - 'Updated table edk_reserves_reserve'
+    - builder_table_update_edk_reserves_reserve_3.php

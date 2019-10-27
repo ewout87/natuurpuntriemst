@@ -1,6 +1,7 @@
 <?php namespace Edk\Reserves\Models;
 
 use Model;
+use Edk\Reserves\Models\Species;
 
 /**
  * Model
@@ -28,6 +29,11 @@ class Reserve extends Model
     ];
 
     public $attachMany = [
-        'featured_images' => 'System\Models\File'
+        'species' => 'System\Models\File'
+    ];
+
+    public $attachOne = [
+        'featured_image' => 'System\Models\File',
+        'trail_map' => 'System\Models\File'
     ];
 }

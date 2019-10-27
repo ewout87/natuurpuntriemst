@@ -2,10 +2,24 @@ title = "Contact"
 url = "/contact"
 layout = "default"
 is_hidden = 0
-child_of = "mey_no_parent"
+child_of = "home"
 hide_crumb = 0
 remove_crumb_trail = 0
 crumb_disabled = 0
 
 [viewBag]
+
+[genericForm contactForm]
+messages_success = "Wij hebben uw vraag goed ontvangen."
+messages_errors = "Oeps, er is iets misgelopen bij het verzenden van je vraag."
+reset_form = 1
+inline_errors = "display"
+sanitize_data = "disabled"
+anonymize_ip = "disabled"
+recaptcha_theme = "light"
+recaptcha_type = "image"
+recaptcha_size = "normal"
 ==
+<div class="container m-b-3">
+{% component 'contactForm' %}
+</div>

@@ -1,4 +1,0 @@
-title: Objects
-modelClass: TimFoerster\Leaflet\Models\Objects
-toolbar:
-    buttons: reorder_toolbar

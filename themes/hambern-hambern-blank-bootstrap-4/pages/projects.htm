@@ -27,17 +27,13 @@ pageNumber = "{{ :page }}"
     {% for record in records %}
         <div class="col-md-4">
             {% if record.featured_images.count %}
-                    <div class="featured-images text-center">
+                <a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}">
                     {% for image in record.featured_images|slice(0,1) %}
-                    <p>
-                        <img class="position-relative w-100"
-                            data-src="{{ image.filename}}"
-                            src="{{ image.path|resize(500)}}"
-                            alt="{{ image.description }}"
-                            />
-                    </p>
+                     <div class="teaser-image m-b-1">
+                       <div class="bg" style="background-image: url('{{ image.path|resize(500)}}');"></div>
+                    </div>
                     {% endfor %}
-                    </div>  
+                    </a> 
                 {% endif %}
                 <div class="teaser-text arrow-up">
             

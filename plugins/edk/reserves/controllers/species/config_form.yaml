@@ -1,0 +1,10 @@
+name: Species
+form: $/edk/reserves/models/species/fields.yaml
+modelClass: Edk\Reserves\Models\Species
+defaultRedirect: edk/reserves/species
+create:
+    redirect: 'edk/reserves/species/update/:id'
+    redirectClose: edk/reserves/species
+update:
+    redirect: edk/reserves/species
+    redirectClose: edk/reserves/species

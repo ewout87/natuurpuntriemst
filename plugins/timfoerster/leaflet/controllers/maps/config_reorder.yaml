@@ -1,4 +1,0 @@
-title: Maps
-modelClass: TimFoerster\Leaflet\Models\Maps
-toolbar:
-    buttons: reorder_toolbar

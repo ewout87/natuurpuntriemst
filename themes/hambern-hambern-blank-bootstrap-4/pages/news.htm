@@ -23,17 +23,13 @@ postPage = "article"
         <div class="row v-align">
             <div class="col-md-4 {% if loop.index is even %} push-md-8 {% endif %} vcenter">
                 {% if post.featured_images.count %}
-                    <div class="featured-images text-center">
+                    <a href="{{ post.url }}">
                     {% for image in post.featured_images|slice(0,1) %}
-                    <p>
-                        <img class="position-relative w-100"
-                            data-src="{{ image.filename}}"
-                            src="{{ image.path|resize(500)}}"
-                            alt="{{ image.description }}"
-                            />
-                    </p>
+                    <div class="teaser-image">
+                       <div class="bg" style="background-image: url('{{ image.path|resize(500)}}');"></div>
+                    </div>
                     {% endfor %}
-                    </div>  
+                    </a>  
                 {% endif %}
              </div>
              <div class="col-md-8 {% if loop.index is even %} pull-md-4 {% endif %} vcenter">

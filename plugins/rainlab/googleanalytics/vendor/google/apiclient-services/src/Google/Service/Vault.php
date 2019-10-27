@@ -53,6 +53,7 @@ class Google_Service_Vault extends Google_Service
     parent::__construct($client);
     $this->rootUrl = 'https://vault.googleapis.com/';
     $this->servicePath = '';
+    $this->batchPath = 'batch';
     $this->version = 'v1';
     $this->serviceName = 'vault';
 
@@ -114,6 +115,10 @@ class Google_Service_Vault extends Google_Service
               'path' => 'v1/matters',
               'httpMethod' => 'GET',
               'parameters' => array(
+                'view' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
                 'state' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -125,10 +130,6 @@ class Google_Service_Vault extends Google_Service
                 'pageSize' => array(
                   'location' => 'query',
                   'type' => 'integer',
-                ),
-                'view' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'removePermissions' => array(
@@ -317,6 +318,10 @@ class Google_Service_Vault extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
+                'view' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
                 'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -324,10 +329,6 @@ class Google_Service_Vault extends Google_Service
                 'pageSize' => array(
                   'location' => 'query',
                   'type' => 'integer',
-                ),
-                'view' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'removeHeldAccounts' => array(

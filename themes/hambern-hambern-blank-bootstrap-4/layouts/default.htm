@@ -1,6 +1,16 @@
 [staticPage]
 useContent = 1
-default = 1
+default = 0
+
+[genericForm newsletter]
+messages_success = "Je bent ingeschreven op de nieuwsbrief"
+messages_errors = "Oeps, er ging iets mis bij je inschrijving"
+inline_errors = "disabled"
+sanitize_data = "disabled"
+anonymize_ip = "disabled"
+recaptcha_theme = "light"
+recaptcha_type = "image"
+recaptcha_size = "normal"
 ==
 <!DOCTYPE html>
 <html lang="en">
@@ -25,15 +35,14 @@ default = 1
 
   {% partial 'header' %}
 
-{% partial 'breadcrumbs' %}
+    {% partial 'breadcrumbs' %}
 
   <section id="page" class="m-b-3">
     {% page %}
   </section>
   
   {% partial 'footer' %}
- 
-  
+
   {% partial 'disclaimer' %}
       <script src="{{ [
       'assets/vendor/jquery/dist/jquery.min.js',

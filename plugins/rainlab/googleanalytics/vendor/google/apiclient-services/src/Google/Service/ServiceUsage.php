@@ -55,6 +55,7 @@ class Google_Service_ServiceUsage extends Google_Service
     parent::__construct($client);
     $this->rootUrl = 'https://serviceusage.googleapis.com/';
     $this->servicePath = '';
+    $this->batchPath = 'batch';
     $this->version = 'v1';
     $this->serviceName = 'serviceusage';
 

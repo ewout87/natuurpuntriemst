@@ -1,19 +1,54 @@
 fields:
     name:
-        label: Naam
+        label: Tekst
         span: auto
         type: text
-    description:
-        label: Omschrijving
-        size: giant
-        span: left
-        type: richeditor
-    featured_images:
-        label: 'Bestand uploader'
-        mode: file
-        useCaption: true
-        thumbOptions:
-            mode: crop
-            extension: auto
+    intro:
+        label: Intro
+        size: large
         span: auto
-        type: fileupload
+        type: textarea
+secondaryTabs:
+    fields:
+        description:
+            label: 'WYSIWYG editor'
+            size: giant
+            span: auto
+            type: richeditor
+            tab: Bewerken
+        featured_image:
+            label: 'Bestand uploader'
+            mode: image
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            tab: Bewerken
+        species:
+            label: Soorten
+            mode: image
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            tab: Soorten
+        trails:
+            label: 'WYSIWYG editor'
+            size: huge
+            span: auto
+            type: richeditor
+            tab: Wandelingen
+        trail_map:
+            label: Wandelkaart
+            mode: file
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            tab: Wandelingen

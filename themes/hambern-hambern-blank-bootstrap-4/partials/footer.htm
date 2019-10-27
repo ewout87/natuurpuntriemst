@@ -8,10 +8,7 @@ description = "The footer"
             <div class="row">
                 <div class="col-md-6">
                      <strong>Schrijf je dan in voor onze nieuwsbrief</strong>
-                    <form class="form-inline m-t-1" action="/action_page.php">
-                    
-                        <input type="email" class="text" id="email" placeholder="jouw emailadres">
-                        <button type="submit" class="submit"><i class="far fa-paper-plane"></i></button>
+                        {% component 'newsletter' %}
                     </form>
                 </div>
                 <div class="col-md-6">

@@ -9,21 +9,25 @@ categoryPage = "article"
 postPage = "article"
 ==
 <div class="last-news container m-b-3">
+<div class="text-md-center m-b-2">
     <h2 class="text-md-center m-b-2">Laatste nieuws</h2>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac libero pellentesque, varius risus vel, fringilla leo. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean quis consectetur libero. Sed vehicula blandit pharetra. 
+        </p>
+</div>
     {% for post in posts %}
   <div class="row v-align">
     <div class="col-md-8">
         {% if post.featured_images.count %}
             <div class="featured-images text-center">
             {% for image in post.featured_images|slice(0,1) %}
-            <p>
-                <img class="position-relative w-100"
+            <a href="{{ post.url }}">
+                <img class="w-100"
                     data-src="{{ image.filename}}"
                     src="{{ image.path|resize(500)}}"
                     alt="{{ image.description }}"
                     />
-                <a class="read-more" href="{{ post.url }}"></a>
-            </p>
+            </a>
             {% endfor %}
             </div>
         {% endif %}
