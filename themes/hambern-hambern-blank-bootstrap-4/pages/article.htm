@@ -1,7 +1,9 @@
-title = "article"
+title = "artikel"
 url = "/article/:slug"
 layout = "default"
 is_hidden = 0
+robot_index = "index"
+robot_follow = "follow"
 child_of = "news"
 hide_crumb = 0
 remove_crumb_trail = 0
@@ -13,16 +15,6 @@ crumb_disabled = 0
 [blogPost]
 slug = "{{ :slug }}"
 categoryPage = "article"
-
-[genericForm newsletter]
-messages_success = "Your form was successfully submitted"
-messages_errors = "There were errors with your submission"
-inline_errors = "disabled"
-sanitize_data = "disabled"
-anonymize_ip = "disabled"
-recaptcha_theme = "light"
-recaptcha_type = "image"
-recaptcha_size = "normal"
 ==
 <?php
 function onEnd() {
@@ -59,33 +51,43 @@ function onEnd() {
 }
 ?>
 ==
-<div class="container-60 m-b-3">
-
+<div class="container m-b-3">     
             <p class="info">{{ post.published_at|date('d F Y')|capitalize}}</p>
             <h2>{{ post.title }}</h2>
-            <div class="content m-b-3">{{ post.content_html|raw }}</div>
-                
+            <div class="content">{{ post.content_html|raw }}</div>
+</div>
+<div class="container-fluid m-b-3">  
                {% if post.featured_images.count != 0 %}
-               <div class="row">
-                {% for image in post.featured_images %}
-                	{% if loop.index is divisible by(4) or loop.first %}
-                	<a class="item col-lg-6 col-md-8" href="{{ image.path }}" data-toggle="lightbox" data-gallery="example-gallery">
-                	    <div class="lightbox-image">
-                		    <div class="bg" style="background-image: url('{{ image.path|resize(500,500)}}');"></div>
-                		</div>
-                	</a> 
-                	{% else %}
-                	<a class="item col-lg-3 col-md-4" href="{{ image.path }}" data-toggle="lightbox" data-gallery="example-gallery">
-                	    <div class="lightbox-image">
-                		    <div class="bg" style="background-image: url('{{ image.path|resize(500,500)}}');"></div>
-                		</div>
-                	</a> 
-                	{% endif %}
-
+               <div class="grid">
+               <div class="grid-sizer col-md-3 col-sm-4"></div>
+                {% for image in post.featured_images|slice(0,6) %}
+                    <a href="{{ image.path }}" data-toggle="lightbox" data-gallery="example-gallery" class="grid-item col-md-3  col-sm-4">
+                        <img class="lightbox-image w-100 grid-item-content"
+                            data-src="{{ image.filename}}"
+                            src="{{ image.path|resize(500)}}"
+                            alt="{{ image.description }}"
+                            />
+                    </a>
+                {% endfor %}
+                {% for image in post.featured_images|slice(7, 20) %}
+                    <a href="{{ image.path }}" data-toggle="lightbox" data-gallery="example-gallery" class="hidden grid-item col-md-3  col-sm-4">
+                        <img class="lightbox-image w-100 grid-item-content"
+                            data-src="{{ image.filename}}"
+                            src="{{ image.path|resize(500)}}"
+                            alt="{{ image.description }}"
+                            />
+                    </a>
                 {% endfor %}
                 </div>
-            {% endif %}     
-
+                  <div class="text-xs-center">
+                      <div id="load-more" class="button m-x-auto">Laad meer</div>
+                  </div>
+                {% endif %} 
+</div>
+<div class="container m-b-3">  
+    <div class="row">
+        {% partial 'prevnext' %}
+    </div>
 </div>
 
 
@@ -95,10 +97,36 @@ function onEnd() {
 
 {% put scripts %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+    <script src="/path/to/masonry.pkgd.min.js"></script>
     <script>
-    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-                event.preventDefault();
-                $(this).ekkoLightbox();
+    $(document).ready(function () {
+        $('.container-fluid').on('click', '[data-toggle="lightbox"]', function(event) {
+            event.preventDefault();
+            $(this).ekkoLightbox();
+        });
+        
+        
+
+        var $grid = $('.grid').masonry({
+          itemSelector: '.grid-item',
+          percentPosition: true,
+          columnWidth: '.grid-sizer'
+        });
+        
+        // layout Masonry after each image loads
+        $grid.imagesLoaded().progress( function() {
+          $grid.masonry('layout');
+        });
+        
+         $('#load-more').on('click', function() {
+            $('.grid-item.hidden').fadeIn();
+            $grid.imagesLoaded().progress( function() {
+              $grid.masonry('layout');
             });
+            $(this).hide();
+        });
+    });
     </script>
 {% endput %}

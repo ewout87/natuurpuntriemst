@@ -2,14 +2,31 @@ description = "Interactive map"
 
 [viewBag]
 ==
-<div class="container-fluid m-b-3">
-  <div class="nature gradient">
-    <div>
-        <h2>Ontdek onze natuur!</h2>
-        <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac libero pellentesque, varius risus vel, fringilla leo. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean quis consectetur libero. Sed vehicula blandit pharetra. 
-        </p>
-        <a class="button m-t-0" href="{{ 'nature'|page }}" role="button">Naar interactieve kaart</a>
-    </div>
-  </div>
-</div>
+<div id="map"></div>
+
+{% put styles %}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+       integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+       crossorigin=""/>
+{% endput %}
+
+{% put scripts %}
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   crossorigin=""></script>  
+
+<script>
+  	var map = L.map('map');
+  	
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            scrollWheelZoom: false,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors', 
+            maxZoom: 18
+        }).addTo(map);
+	
+	map.setView([{{ record.coords |default('50.8086675,5.666044') }}], 16 ).scrollWheelZoom.disable();
+	
+	var marker = L.marker([{{ record.coords |default('50.8086675,5.666044') }}]).addTo(map)  
+</script>
+{% endput %}

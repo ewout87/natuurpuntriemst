@@ -1,0 +1,26 @@
+[viewBag]
+
+[nextAndPrev]
+category = "noFilter"
+postPage = "article"
+==
+<div id="next-prev">
+{% set prev = nextAndPrev.prevPost %}
+{% set next = nextAndPrev.nextPost %}
+    <div class="col-sm-6">
+    {% if prev %}
+        <div class="prev-post">
+            <span class="small-title"><i class="fa fa-arrow-left" aria-hidden="true"></i> Vorig artikel</span>
+            <h4><a href="{{prev.url}}" title="{{ prev.title }}">{{ prev.title }}</a></h4>
+        </div>
+    {% endif %}
+    </div>
+    <div class="col-sm-6">
+    {% if next %}
+        <div class="next-post text-xs-right">
+            <span class="small-title">Volgend artikel <i class="fa fa-arrow-right" aria-hidden="true"></i></span>
+            <h4><a href="{{next.url}}" title="{{ next.title }}">{{ next.title }}</a></h4>
+        </div>
+    {% endif %}
+    </div>
+</div>

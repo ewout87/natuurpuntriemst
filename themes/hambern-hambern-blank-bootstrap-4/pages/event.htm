@@ -45,7 +45,7 @@ function onEnd() {
                         <h2 class="title">{{record.name}}</h2>
                         <p class="time"><i class="fa fa-calendar"></i> {{record.start_at | date('l d M H:i')}}</p>
                         {% if record.address is not empty %}
-                        <p class="location"><i class="fa fa-map-marker"></i> {{record.address}}</p>
+                        <a class="m-b-1" href="https://www.google.com/maps/place/{{record.address}}" target="_blank"><i class="fa fa-map-marker"></i> {{record.address}}</a>
                         {% endif %}
                     </div>
                 </div>

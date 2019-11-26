@@ -16,13 +16,6 @@ identifierValue = "{{ :id }}"
 modelKeyColumn = "id"
 displayColumn = "name"
 notFoundMessage = "Record niet gevonden"
-
-[LeafletMap]
-coords = "51.505, -0.09"
-zoom = 12
-markerCoords = "{{ 51.505, -0.09 }}"
-markerText = "redmarlin.leafletmap::lang.components.leafletmap.markerText.default"
-scrollProtection = "false"
 ==
 <?php
 function onEnd() {
@@ -42,20 +35,16 @@ function onEnd() {
         $_featured_image = $_record->featured_image->path;
         $this->page->banner_image = $_featured_image;
     }
-    
 }
 ?>
 ==
-<div class="container-60 m-b-3"> 
-
-        <div class="intro">
-            <strong>{{ record.intro }}</strong>
-        </div>
-                {% partial 'contact' %}
-        <div class="description">
-            {{ record.description|raw }}  
-            
-        </div> 
+<div class="container m-b-3"> 
+    <div class="intro">
+        <strong>{{ record.intro }}</strong>
+    </div>
+    <div class="description">
+        {{ record.description|raw }}  
+    </div> 
 </div>
 
 <div class="species p-y-2 text-xs-center">
@@ -63,8 +52,12 @@ function onEnd() {
     <div class="multiple-items">
             {% if record.species.count != 0 %}
                 {% for species in record.species %}
-                	<div class="teaser-image text-md-center">
-                	   <div class="img-rounded bg" title="{{species.title}}" style="background-image: url('{{ species.path | resize(200)}}')" alt=""></div>
+                	<div class="text-md-center">
+                	    <img class="img-circle m-x-auto"
+                            data-src="{{ species.filename}}"
+                            src="{{ species.path|resize(200)}}"
+                            alt="{{ species.description }}"
+                            />
                 	   <br>
                 	    <i class="caption">{{ species.title }}</i>
                 	</div>				
@@ -73,9 +66,7 @@ function onEnd() {
     </div>
 </div>
 
-<div id="leafmap"></div>
-{% component 'LeafletMap' %}
-
+{% partial 'map' %}
 
 {% put styles %}
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>

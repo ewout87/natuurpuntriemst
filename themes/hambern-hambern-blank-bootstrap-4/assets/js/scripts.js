@@ -5,7 +5,8 @@ $(document).ready(function () {
     var activeSlide = $('.projects .carousel-item.active').attr('id');
 });    
 
-$('.container').on('click', '[data-toggle="lightbox"]', function(event) {
-                event.preventDefault();
-                $(this).ekkoLightbox();
-            });
+
+
+
+
+

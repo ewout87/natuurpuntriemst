@@ -82,7 +82,7 @@ a.categories:hover {
 }
 
 button[type="submit"],
-a.button {
+.button {
     -webkit-transition: background-color .2s;
     transition: background-color .2s;
     background-color: #00755F;
@@ -98,26 +98,19 @@ a.button {
     padding: 1.2ex 2ex;
     text-decoration: none;
     text-transform: uppercase;
-    border: none;
+    border: 1px solid #00755F;
     border-radius: 0;
 }
 
 button[type="submit"]:hover,
-a.button:hover {
+.button:hover {
+    cursor: pointer;
     opacity: 0.5;
 }
 
 /*Grid*/
 .row > [class*='col-'] {
   padding-bottom: 30px;
-}
-
-
-.container-60 {
-    width: 100%;
-    position: relative;
-    padding-right: 20%;
-    padding-left: 10%;
 }
 
 .container-100 {
@@ -451,7 +444,6 @@ input[type="email"] {
     font-weight: bold;
 }
 
-.lightbox-image,
 .teaser-image {
     position: relative;
     height: 255px;
@@ -475,10 +467,40 @@ input[type="email"] {
     height: 100%;
 }
 
+#newsletter {
+     position: relative;
+}
+
 #newsletter button[type="submit"] {
     margin: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 
+.balloon {
+    border: 10px solid #00755F;
+    position: relative;
+    background-color: #00755F;
+    color: #fff;
+    padding: 10px;
+}
 
+.balloon.arrow-right:after {
+    border-left: 60px solid #00755F; 
+}
+
+.balloon a.button {
+    border: 2px solid #fff;
+    margin-top: 0;
+}
+
+#map {
+    height: 500px;
+}
+
+.grid-item {
+    padding: 10px ;
+}
 

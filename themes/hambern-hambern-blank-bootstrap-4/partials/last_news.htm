@@ -17,7 +17,7 @@ postPage = "article"
 </div>
     {% for post in posts %}
   <div class="row v-align">
-    <div class="col-md-8">
+    <div class="col-md-8 col-xs-12">
         {% if post.featured_images.count %}
             <div class="featured-images text-center">
             {% for image in post.featured_images|slice(0,1) %}
@@ -32,7 +32,7 @@ postPage = "article"
             </div>
         {% endif %}
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 col-xs-12">
         <div class="teaser-text arrow-left wow bounceInRight">
             <p class="info">
                 {{ post.published_at|date('d F Y')|capitalize }}

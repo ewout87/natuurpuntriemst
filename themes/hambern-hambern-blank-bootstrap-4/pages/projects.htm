@@ -62,7 +62,7 @@ pageNumber = "{{ :page }}"
     <nav class="text-xs-center">
         <ul class="pagination">
             {% if records.currentPage > 1 %}
-                <li class="page-item"><a class="page-link" href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage-1) }) }}"><</a></li>
+                <li class="page-item"><a class="page-link" href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage-1) }) }}"><i class="fa fa-arrow-left" aria-hidden="true"></i></a></li>
             {% endif %}
     
             {% for page in 1..records.lastPage %}
@@ -72,7 +72,7 @@ pageNumber = "{{ :page }}"
             {% endfor %}
     
             {% if records.lastPage > records.currentPage %}
-                <li class="page-item"><a class="page-link" href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage+1) }) }}">></a></li>
+                <li class="page-item"><a class="page-link" href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage+1) }) }}"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></li>
             {% endif %}
         </ul>
     </nav>

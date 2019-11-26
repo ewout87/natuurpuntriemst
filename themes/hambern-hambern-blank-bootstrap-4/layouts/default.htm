@@ -1,7 +1,3 @@
-[staticPage]
-useContent = 1
-default = 0
-
 [genericForm newsletter]
 messages_success = "Je bent ingeschreven op de nieuwsbrief"
 messages_errors = "Oeps, er ging iets mis bij je inschrijving"
@@ -11,6 +7,11 @@ anonymize_ip = "disabled"
 recaptcha_theme = "light"
 recaptcha_type = "image"
 recaptcha_size = "normal"
+
+[breadcrumbs]
+main-ol-class = "breadcrumb"
+active-class = "active"
+disabled-class = "disabled"
 ==
 <!DOCTYPE html>
 <html lang="en">
@@ -33,11 +34,13 @@ recaptcha_size = "normal"
 
 	{% partial 'navbar' %}
 
-  {% partial 'header' %}
+    {% partial 'header' %}
 
-    {% partial 'breadcrumbs' %}
+    <div class="breadcrumbs m-b-3">
+        {% component 'breadcrumbs' %}
+        </div>
 
-  <section id="page" class="m-b-3">
+  <section id="page">
     {% page %}
   </section>
   

@@ -11,13 +11,12 @@ detailsKeyColumn = "id"
 detailsUrlParameter = "id"
 pageNumber = "{{ :page }}"
 ==
-<div class="reserves container m-b-3">
+<div class="container reserves m-b-3">
     <div class="text-md-center m-b-2">
     <h2>Onze gebieden</h2>
      <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac libero pellentesque, varius risus vel, fringilla leo. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean quis consectetur libero. Sed vehicula blandit pharetra. 
         </p>
-    </div>
         <div class="row">
               {% for record in records %}
                 <div class="col-md-6">
@@ -35,5 +34,6 @@ pageNumber = "{{ :page }}"
                     </a>
                 </div>
               {% endfor %}
+        </div>
     </div>
 </div>
